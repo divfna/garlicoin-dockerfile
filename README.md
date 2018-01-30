@@ -1,30 +1,35 @@
 # garlicoin-dockerfile
-Dockerfile for Garlicoin Daemon Linux
+Dockerfile for Garlicoin daemon under Linux
 
 :moneybag: Donations welcomed at `GZkqkLUXsWG7qT9aT9SPmKkZFxcbb7YrMx` :bow:
     
-### Create data directory on host
-    # mkdir -p /var/lib/garlicoin
-
-### Copy Garlicoin configuration to data directory
-    # cp garlicoin.conf /var/lib/garlicoin
-    
 See [garlicoin.conf](garlicoin.conf) for an example configuration file.  
-**It is recommended that you change the `rpcpassword` field before running!**
-
-### Copy existing wallet file to data directory (Optional)
-    # cp wallet.dat /var/lib/garlicoin
-    
-A new wallet will be created automatically if you do not have an existing one you wish to use.
 
 ### Run Docker image
+    $ docker volume create garlicoin_data
     $ docker run -d \
         -p 42068:42068 \
         -p 42069:42069 \
-        -v /var/lib/garlicoin:/mnt/garlicoin \
+        -v garlicoin_data:/data/garlicoin \
         --restart=always \
         --name garlicoin \
-        ewrogers/garlicoin:latest
+        ewrogers/garlicoin:latest -rescan -txindex
+        
+**NOTE:** The `-rescan` and `-txindex` args are optional. Any args after the docker image are passed to `garlicoind` directly.
+        
+### Copy existing wallet file to data directory (Optional)
+    # cp wallet.dat /var/lib/docker/volumes/garlicoin_data/_data
+    
+A new wallet will be created automatically if you do not have an existing one you wish to use.
+
+### Update garlicoin.conf (Recommended)
+    $ nano garlicoin.conf
+    # cp garlicoin.conf /var/lib/docker/volumes/garlicoin_data/_data
+    
+It is **highly recommended** that you change the `rpcpassword` field.
+
+### Restart Docker container (for wallet/config changes)
+    $ docker restart garlicoin
 
 ### Testing via CLI
     $ docker exec -it garlicoin /bin/bash
