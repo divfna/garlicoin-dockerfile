@@ -42,5 +42,6 @@ WORKDIR ${GARLICOIN_DIR}
 RUN chmod +x *.sh
 
 # Start Garlicoin daemon
+EXPOSE 42068 42069
 ENTRYPOINT ["./start_garlicoin.sh"]
 
