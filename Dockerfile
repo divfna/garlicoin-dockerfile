@@ -7,7 +7,7 @@ ENV GARLICOIN_VERSION 0.16.0
 ENV GARLICOIN_PACKAGE Garlicoin
 ENV GARLICOIN_ARCHIVE ${GARLICOIN_PACKAGE}-x86_64-unknown-linux-gnu.tar.gz
 
-ENV GARLICOIN_RELEASE https://github.com/GarlicoinOrg/Garlicoin/releases/download/20180123154915-i686-pc-linux-gnu/${GARLICOIN_ARCHIVE}
+ENV GARLICOIN_RELEASE https://github.com/GarlicoinOrg/Garlicoin/releases/download/allium-mainnet/${GARLICOIN_ARCHIVE}
 
 ENV GARLICOIN_DIR /opt/${GARLICOIN_PACKAGE}
 
@@ -43,5 +43,5 @@ RUN chmod +x *.sh
 
 # Start Garlicoin daemon
 EXPOSE 42068 42069
-ENTRYPOINT ["./start_garlicoin.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 
