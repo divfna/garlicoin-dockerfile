@@ -1,7 +1,7 @@
 # garlicoin-dockerfile
 Dockerfile for Garlicoin daemon under Linux
 
-:moneybag: Donations welcomed at `GZkqkLUXsWG7qT9aT9SPmKkZFxcbb7YrMx` :bow:
+:moneybag: Donations welcomed at `GTGrDXcusqnvXhXhGBJEFwpwhXrSftAHcw` :bow:
     
 See [garlicoin.conf](garlicoin.conf) for an example configuration file.  
 
